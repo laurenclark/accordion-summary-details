@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Accordion with Summary/Details Tags</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <style>
             * {
                 outline: none;
@@ -181,15 +182,40 @@
                 accordion: document.querySelector('.accordion')
             };
 
-            function toggleAccordion(e) {
-                if (e.target.tagName === 'SUMMARY') {
-                    e.target.classList.contains('open')
-                        ? e.target.classList.remove('open')
-                        : e.target.classList.add('open');
-                }
+            // function toggleAccordion(e) {
+            //     if (e.target.tagName === 'SUMMARY') {
+            //         e.target.classList.contains('open')
+            //             ? e.target.classList.remove('open')
+            //             : e.target.classList.add('open');
+            //     }
+            // }
+
+            // doc.container.addEventListener('click', toggleAccordion, false);
+
+            // jQuery Toggle
+            function accordion() {
+                $('.accordion__title').click(function() {
+                    if (
+                        !$(this)
+                            .next()
+                            .hasClass('open')
+                    ) {
+                        $(this)
+                            .next()
+                            .slideDown('fast')
+                            .addClass('open');
+                        $(this).addClass('open');
+                    } else {
+                        $(this)
+                            .next()
+                            .slideUp('fast')
+                            .removeClass('open');
+                        $(this).removeClass('open');
+                    }
+                });
             }
 
-            doc.container.addEventListener('click', toggleAccordion, false);
+            accordion();
         </script>
     </body>
 </html>
